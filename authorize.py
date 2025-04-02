@@ -41,7 +41,7 @@ print("Заголовок верен")
 now_date = datetime.datetime.now().strftime("%Y.%m.%d-%H.%M.%S") # Добавляем переменную с датой
 screenshot_name = 'screen' + now_date + '.png' # Добавляем переменную с именем
 
-time.sleep(3) # Ждем, пока страница прогрузится
+time.sleep(3) #Ждем, пока страница прогрузится
 
 # Делаем скриншот браузера и сохраняем в папку
 driver.save_screenshot('C:\\Programming\\PycharmProjects\\QA\\screenshots\\' + screenshot_name)
