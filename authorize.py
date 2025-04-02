@@ -16,12 +16,29 @@ driver.set_window_size(1920, 1080)
 
 user_name = driver.find_element(By.XPATH, "//*[@id='user-name']")
 user_name.send_keys("performance_glitch_user")
+print("Логин введен") # Добавлен принт для логина
 
 password = driver.find_element(By.XPATH, "//*[@id='password']")
 password.send_keys("secret_sauce")
+print("Пароль введен") # Добавлен принт для пароля
 
 login_button = driver.find_element(By.ID, "login-button")
 login_button.click()
+print("Кнопка нажата") # Добавлен принт для кнопки
+
+# Проверка на корректность url
+get_url = driver.current_url
+print(get_url)
+shop_url = "https://www.saucedemo.com/inventory.html"
+assert shop_url == get_url
+print("URL корректен")
+
+# Проверка на корректность заголовка
+text_products = driver.find_element(By.XPATH, "//span[@class = 'title']")
+print(text_products.text)
+text_products_value = text_products.text
+assert text_products_value == "Products"
+print("Заголовок верен")
 
 time.sleep(10)
 driver.close()
