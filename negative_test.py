@@ -30,7 +30,8 @@ print("Кнопка нажата")
 # Негативный тест
 warning_text = driver.find_element(By.XPATH, "//h3[@data-test = 'error']")
 warning_text_value = warning_text.text
-assert warning_text_value == "Epic sadface: Username and password do not match any user in this service"
+assert warning_text_value == ("Epic sadface: Username and password do not match "
+                              "any user in this service"), "Ошибка, неправильное сообщение/отсутствие сообщения"
 print("Сообщение об ошибке отображается корректно")
 
 # Закрытие сообщения об ошибке
