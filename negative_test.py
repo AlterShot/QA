@@ -8,7 +8,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 options = webdriver.ChromeOptions()
 options.add_experimental_option("detach", True)
-options.add_argument("--headless") # Проводим тесты без открытия браузера
 
 driver = webdriver.Chrome(options=options, service=ChromeService(ChromeDriverManager().install()))
 base_url: str = "https://www.saucedemo.com/"
@@ -27,14 +26,17 @@ login_button = driver.find_element(By.ID, "login-button")
 login_button.click()
 print("Кнопка нажата")
 
-# Негативный тест
 warning_text = driver.find_element(By.XPATH, "//h3[@data-test = 'error']")
 warning_text_value = warning_text.text
 assert warning_text_value == ("Epic sadface: Username and password do not match "
                               "any user in this service"), "Ошибка, неправильное сообщение/отсутствие сообщения"
 print("Сообщение об ошибке отображается корректно")
 
-# Закрытие сообщения об ошибке
+time.sleep(2) # Включаем задержку, чтобы увидеть сообщение об ошибке
+
 error_button = driver.find_element(By.XPATH, "//button[@class = 'error-button']")
 error_button.click()
 print("Сообщение об ошибке закрыто")
+
+time.sleep(5) # Включаем задержку
+driver.refresh() # Обновляем страницу
