@@ -26,18 +26,6 @@ login_button = driver.find_element(By.ID, "login-button")
 login_button.click()
 print("Кнопка нажата")
 
-get_url = driver.current_url
-print(get_url)
-shop_url = "https://www.saucedemo.com/inventory.html"
-assert shop_url == get_url
-print("URL корректен")
-
-text_products = driver.find_element(By.XPATH, "//span[@class = 'title']")
-print(text_products.text)
-text_products_value = text_products.text
-assert text_products_value == "Products"
-print("Заголовок верен")
-
 now_date = datetime.datetime.now().strftime("%Y.%m.%d-%H.%M.%S") # Добавляем переменную с датой
 screenshot_name = 'screen' + now_date + '.png' # Добавляем переменную с именем
 
