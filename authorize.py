@@ -1,5 +1,5 @@
 import time
-
+import datetime
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.by import By
@@ -8,7 +8,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 options = webdriver.ChromeOptions()
 options.add_experimental_option("detach", True)
-options.add_argument("--headless") # Проводим тесты без открытия браузера
 
 driver = webdriver.Chrome(options=options, service=ChromeService(ChromeDriverManager().install()))
 base_url: str = "https://www.saucedemo.com/"
@@ -38,3 +37,11 @@ print(text_products.text)
 text_products_value = text_products.text
 assert text_products_value == "Products"
 print("Заголовок верен")
+
+now_date = datetime.datetime.now().strftime("%Y.%m.%d-%H.%M.%S") # Добавляем переменную с датой
+screenshot_name = 'screen' + now_date + '.png' # Добавляем переменную с именем
+
+time.sleep(3) # Ждем, пока страница прогрузится
+
+# Делаем скриншот браузера и сохраняем в папку
+driver.save_screenshot('C:\\Programming\\PycharmProjects\\QA\\screenshots\\' + screenshot_name)
