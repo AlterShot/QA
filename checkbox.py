@@ -14,7 +14,5 @@ driver.get(base_url)
 
 home_box = driver.find_element(By.XPATH, "//span[@class='rct-checkbox']")
 home_box.click()
-if home_box.is_selected():
-    print("home chosen correctly")
-else:
-    print("incorrect")
+assert home_box.is_selected(), "wrong choice"
+print("home chosen correctly")
