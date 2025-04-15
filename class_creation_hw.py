@@ -8,16 +8,17 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-options = webdriver.ChromeOptions()
-options.add_experimental_option("detach", True)
-
-
 # Создаем класс
 class Testing():
     def __init__(self):
-        self.driver = webdriver.Chrome(options=options, service=ChromeService(ChromeDriverManager().install()))
+        self.driver = webdriver.Chrome(options=self.get_options(), service=ChromeService(ChromeDriverManager().install()))
         self.driver.set_window_size(1920, 1080)
         self.base_url = 'https://www.saucedemo.com/'
+
+    def get_options(self):
+        options = webdriver.ChromeOptions()
+        options.add_experimental_option("detach", True)
+        return options
 
     def open_browser(self):
         self.driver.get(self.base_url)
