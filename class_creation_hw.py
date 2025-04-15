@@ -10,18 +10,18 @@ from selenium.webdriver.support import expected_conditions as EC
 # Создаем класс
 class Testing():
     def __init__(self):
-        self.__options = self.__get_options()
-        self.driver = self.__init_driver()
-        self.driver.set_window_size(1920, 1080)
         self.base_url = 'https://www.saucedemo.com/'
+        self._get_options()
+        self.driver = None
+        self._init_driver()
 
-    def __get_options(self):
-        options = webdriver.ChromeOptions()
-        options.add_experimental_option("detach", True)
-        return options
+    def _get_options(self):
+        self.options = webdriver.ChromeOptions()
+        self.options.add_experimental_option("detach", True)
+        self.options.add_argument("--start-maximized")
 
-    def __init_driver(self):
-        return webdriver.Chrome(options=self.__options, service=ChromeService(ChromeDriverManager().install()))
+    def _init_driver(self):
+        self.driver = webdriver.Chrome(options=self.options, service=ChromeService(ChromeDriverManager().install()))
 
     def open_browser(self):
         self.driver.get(self.base_url)
