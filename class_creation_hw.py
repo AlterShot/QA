@@ -19,6 +19,9 @@ class SauceDemoTesting():
         self.options = webdriver.ChromeOptions()
         self.options.add_experimental_option("detach", True)
         self.options.add_argument("--start-maximized")
+        self.options.add_argument("--disable-notifications")
+        self.options.add_argument("--disable-features=PasswordCheck")
+        self.options.add_argument("--incognito")
 
     def _init_driver(self):
         self.driver = webdriver.Chrome(options=self.options, service=ChromeService(ChromeDriverManager().install()))
